@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TODO APP</title>
+    <script src="https://kit.fontawesome.com/6d5466af38.js" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" 
+        rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" 
+        crossorigin="anonymous"
+    >
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main class="main-container text-center">
+        <header>
+            <h1 class="fs-1 fw-bolder mt-2">OG's TODO APP</h1>
+        </header>
+
+        <form class="d-flex d-flex-column mx-auto mt-4 px-5-md " id="form">
+            <input type="text" id="todoInput" placeholder="Enter a new to do..." class="form-control "> <br>
+            <div id="errormsg"></div>
+            <input type="submit" class="btn btn-md btn-primary addBtn" value="Add">
+        </form>
+
+        <ul class="item-store container mx-auto px-4-md mt-3" id="itemStore" >
+            <!-- <li class="todo-item d-flex mx-auto " >
+                <div class="check-mark my-auto">
+                    <img src="./assets/check.png" alt="check icon" >
+                </div>
+                <p class="todo-detail my-auto">
+                    Learn JS
+                </p>
+                <span class="add my-auto d-flex">
+                    <i  onClick="editTask(this)" data-bs-target="#form" class="fa fa-pencil" aria-hidden="true"></i>
+                    <i onClick="deleteTask(this); itemTodo()" class="fa fa-trash" aria-hidden="true"></i>
+                </span>
+            </li>
+            <li class="todo-item d-flex mx-auto " >
+                <div class="check-mark my-auto">
+                    <img src="./assets/check.png" alt="check icon" >
+                </div>
+                <p class="todo-detail my-auto">
+                    Learn JS
+                </p>
+                <span class="add my-auto d-flex">
+                    <i  onClick="editTask(this)" data-bs-target="#form" class="fa fa-pencil" aria-hidden="true"></i>
+                    <i onClick="deleteTask(this); itemTodo()" class="fa fa-trash" aria-hidden="true"></i>
+                </span>
+            </li>
+            <li class="todo-item d-flex mx-auto " >
+                <div class="check-mark my-auto">
+                    <img src="./assets/check.png" alt="check icon" >
+                </div>
+                <p class="todo-detail my-auto">
+                    Learn JS
+                </p>
+                <span class="add my-auto d-flex">
+                    <i  onClick="editTask(this)" data-bs-target="#form" class="fa fa-pencil" aria-hidden="true"></i>
+                    <i onClick="deleteTask(this); itemTodo()" class="fa fa-trash" aria-hidden="true"></i>
+                </span>
+            </li> -->
+        </ul>
+
+    </main>
+
+
+    <script src="./app.js"></script>
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" 
+            integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" 
+            crossorigin="anonymous">
+       </script>
+</body>
+</html>
