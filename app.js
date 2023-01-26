@@ -32,7 +32,7 @@ let acceptData = () => {
     });
 
     localStorage.setItem("data", JSON.stringify(data));
-    console.log(data);
+    // console.log(data);
 
     addItems();
 };
@@ -45,7 +45,7 @@ let addItems = () => {
                 <div data-id="${x.id}" class="check-mark my-auto" >
                     <img src="./assets/check.png" alt="check icon" id="check-img" style="display:${x.isComplete ? 'block' : 'none'}"   >
                 </div>
-                <p class="todo-detail my-auto" style="textDecoration:${x.isComplete ? 'line-through'  : ' '}">
+                <p class="todo-detail my-auto ${x.isComplete ? 'complete'  : ' '}">
                     ${x.item}
                 </p>
                 <span class="add my-auto d-flex">
@@ -89,7 +89,7 @@ let deleteItem = (e) => {
 function createEventListeners(){
     let todoCheckMarks = document.querySelectorAll(".todo-item .check-mark");
     todoCheckMarks.forEach((checkMark)=> {
-        console.log(checkMark.getAttribute("data-id"), "the check mark")
+        // console.log(checkMark.getAttribute("data-id"), "the check mark")
         checkMark.addEventListener("click", function(){
             updateItem(checkMark.getAttribute("data-id"));
             
@@ -102,19 +102,19 @@ function createEventListeners(){
 let updateItem = (id) => {
     console.log(id, "this is  the id");
     for(let i=0;  i < data.length; i++) {
-        console.log(data[i])
+        // console.log(data[i])
         if(data[i].id == id){
             data[i].isComplete = !data[i].isComplete;
             let selectedItem = document.querySelector(`li[id="${data[i].id}"]`);
-            console.log(selectedItem, data[i], data[i].item)
+            // console.log(selectedItem, data[i], data[i].item)
             if(data[i].isComplete){
                 selectedItem.classList.add("complete");
                 selectedItem.querySelector("img").style.display = "block";
-                selectedItem.querySelector("p").textDecoration = "line-through"; // Fixing the property to set text-decoration
+                selectedItem.querySelector("p").style.textDecoration = "line-through"; // Fixing the property to set text-decoration
             } else {
                 selectedItem.classList.remove("complete");
                 selectedItem.querySelector("img").style.display = "none";
-                selectedItem.querySelector("p").textDecoration = "none"; // Fixing the property to set text-decoration
+                selectedItem.querySelector("p").style.textDecoration = "none"; // Fixing the property to set text-decoration
             }
         };
     };

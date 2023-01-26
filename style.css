@@ -94,9 +94,9 @@ form > input[type="text"] {
 } */
 
 
-/* .todo-item, .todo-detail .complete {
+.todo-detail .complete {
     text-decoration: line-through;
-} */
+}
 
 
 .todo-item p  {
