@@ -2,6 +2,7 @@ let form = document.getElementById("form");
 let input = document.getElementById("todoInput");
 let msg = document.getElementById("errormsg");
 let detail = document.getElementById("itemStore");
+// let check = document.getElementById("check-img");
 
 form.addEventListener("submit", (e) => {
     e.preventDefault();
@@ -13,9 +14,9 @@ form.addEventListener("submit", (e) => {
 let formValidation = () => {
     if (input.value.trim() === "") {
     msg.innerHTML = "No blank space, Enter item to do";
-    console.log("failed");
+    // console.log("failed");
     } else {
-        console.log("success");
+        // console.log("success");
         msg.innerHTML = " ";
         acceptData();
     }
@@ -26,7 +27,7 @@ let data = [];
 let acceptData = () => {
     data.push({
         item : input.value,
-         id: Math.floor(Math.random() * 15), 
+         id: new Date().getTime(), 
         isComplete: false
     });
 
@@ -40,11 +41,11 @@ let addItems = () => {
     detail.innerHTML = "";
     data.map((x, y) =>{
         return (detail.innerHTML += `
-            <li class="todo-item d-flex mx-auto isCompleted " id=${y}>
+            <li class="todo-item d-flex mx-auto ${x.isComplete ? 'complete' : ' '} " id=${x.id}>
                 <div data-id="${x.id}" class="check-mark my-auto" >
-                    <img src="./assets/check.png" alt="check icon" >
+                    <img src="./assets/check.png" alt="check icon" id="check-img" style="display:${x.isComplete ? 'block' : 'none'}"   >
                 </div>
-                <p class="todo-detail my-auto">
+                <p class="todo-detail my-auto" style="textDecoration:${x.isComplete ? 'line-through'  : ' '}">
                     ${x.item}
                 </p>
                 <span class="add my-auto d-flex">
@@ -81,65 +82,46 @@ let deleteItem = (e) => {
 
     localStorage.setItem("data", JSON.stringify(data));
 
-    console.log(data);
+    // console.log(data);
 };
-
-// let updateItem = (id) => {
-//     for(let i=0; i < data.length; i++) {
-//         if(data[i].id ===id){
-//             data[i].isComplete = !data[i].isComplete;
-//         };
-//     };
-//     // return data();
-//     console.log(updateItem(id));
-// };
-
-
 
 
 function createEventListeners(){
     let todoCheckMarks = document.querySelectorAll(".todo-item .check-mark");
     todoCheckMarks.forEach((checkMark)=> {
+        console.log(checkMark.getAttribute("data-id"), "the check mark")
         checkMark.addEventListener("click", function(){
-            isCompleted(checkMark.dataset.id);
+            updateItem(checkMark.getAttribute("data-id"));
+            
         });
     });
 
 };
 
 
-function isCompleted(id){
-    let updateItem = () => {
-    for(let i=0; i < data.length; i++) {
-        if(data[i].id ===id){
+let updateItem = (id) => {
+    console.log(id, "this is  the id");
+    for(let i=0;  i < data.length; i++) {
+        console.log(data[i])
+        if(data[i].id == id){
             data[i].isComplete = !data[i].isComplete;
+            let selectedItem = document.querySelector(`li[id="${data[i].id}"]`);
+            console.log(selectedItem, data[i], data[i].item)
+            if(data[i].isComplete){
+                selectedItem.classList.add("complete");
+                selectedItem.querySelector("img").style.display = "block";
+                selectedItem.querySelector("p").textDecoration = "line-through"; // Fixing the property to set text-decoration
+            } else {
+                selectedItem.classList.remove("complete");
+                selectedItem.querySelector("img").style.display = "none";
+                selectedItem.querySelector("p").textDecoration = "none"; // Fixing the property to set text-decoration
+            }
         };
     };
-    
-    console.log(updateItem(id));
+        
+    localStorage.setItem("data", JSON.stringify(data));
+    // console.log(updateItem(data[y].id));
 }; 
-    
-};
-
-
-// function isCompleted(id){
-//     // Find the task with the matching id
-//     let task = data.find((addItems) => addItems.id === id);
-
-//     // Update the task's isComplete property
-//     task.isComplete = !task.isComplete;
-
-//     // Find the element with the matching id
-//     let updateItem = document.getElementById(id);
-
-//     // Add or remove the 'complete' class based on the task's isComplete property
-//     if (addItems.isComplete === true) {
-//         updateItem.classList.add('complete');
-//     } else {
-//         updateItem.classList.remove('complete');
-//     }
-//     console.log(updateItem); 
-// }
 
 
 

@@ -87,20 +87,17 @@ form > input[type="text"] {
 
 .check-mark img {
     height: .8rem;
-    display: none;
 }
 
-.todo-item .check-mark img::before {
-    display: none;
-}
-
-.todo-item .isCompleted {
-    text-decoration: line-through;
-}
-
-/* .todo-item .check-mark {
+/* #check-img {
     display: none;
 } */
+
+
+/* .todo-item, .todo-detail .complete {
+    text-decoration: line-through;
+} */
+
 
 .todo-item p  {
     text-align: left;
