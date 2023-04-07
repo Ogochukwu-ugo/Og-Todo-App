@@ -74,16 +74,19 @@ let editItem = (e) => {
     deleteItem(e);
 }
 
-
 let deleteItem = (e) => {
-    e.parentElement.parentElement.remove();
+    let selectedItem = e.parentElement.parentElement;
+    let itemId = selectedItem.getAttribute("id");
 
-    data.splice(e.parentElement.parentElement.id, 1);
+    selectedItem.remove();
+
+    data = data.filter((item) => item.id !== Number(itemId));
 
     localStorage.setItem("data", JSON.stringify(data));
-
-    // console.log(data);
 };
+
+
+
 
 
 function createEventListeners(){
